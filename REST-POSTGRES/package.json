@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "postgres": "^3.4.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.25.75"
+  },
+  "name": "rest-postgres",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

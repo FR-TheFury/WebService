@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des produits</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+<h1>Produits en temps réel</h1>
+<ul id="product-list"></ul>
+
+<script>
+    const socket = io("http://localhost:8000");
+    const list = document.getElementById("product-list");
+
+    function addProduct(product) {
+        const li = document.createElement("li");
+        li.textContent = `${product.name} - ${product.price} €`;
+        list.appendChild(li);
+    }
+
+    socket.on("connect", () => {
+        console.log("Connecté à Socket.io");
+
+        fetch("http://localhost:8000/products")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(addProduct);
+            });
+    });
+
+    socket.on("products", (event) => {
+        if (event.type === "create") {
+            addProduct(event.product);
+        }
+    });
+</script>
+</body>
+</html>
